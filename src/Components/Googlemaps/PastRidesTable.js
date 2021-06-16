@@ -103,43 +103,43 @@ const PastRides=()=>{
     {id:'date',label:'date',minWidth:100,format:(value)=>moment(value).format('D/MM/YYYY'),align:'right'}
   ]
 
-  // const rows=rides.map((ride)=>{
-  //   return {id:ride['_id'],name:ride['name'],case:ride['pcase'],date:ride['date']}
-  // })
+  const rows=rides.map((ride)=>{
+    return {id:ride['_id'],name:ride['name'],case:ride['pcase'],date:ride['date']}
+  })
 
-  const rows=[
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:1},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:2},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:3},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:4},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:5},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:6},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:7},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:8},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:9},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:10},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:11},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:12},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:13},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:14},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:15},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:16},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:17},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:18},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:19},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:20},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:21},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:22},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:23},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:24},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:25},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:26},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:27},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:28},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:29},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:30},
-    {name:'fskd',case:'fsdf',date:'22/03/2020',id:31},
-  ]
+  // const rows=[
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:1},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:2},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:3},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:4},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:5},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:6},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:7},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:8},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:9},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:10},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:11},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:12},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:13},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:14},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:15},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:16},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:17},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:18},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:19},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:20},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:21},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:22},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:23},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:24},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:25},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:26},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:27},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:28},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:29},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:30},
+  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:31},
+  // ]
   const [tableOpen,setTableOpen]=useState(false)
   const [page,setPage]=useState(0)
   const [rowsPerPage,setRowsPerPage]=useState(10)

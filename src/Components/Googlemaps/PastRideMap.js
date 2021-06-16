@@ -7,7 +7,7 @@ const IndexMap =(props)=> {
  const initMap = () => {
     map = new window.google.maps.Map(document.getElementById("map"), {
       center:{lat:26,lng:78},
-        zoom: 15,
+        zoom: 10,
         mapTypeControl: false,
         streetViewControl:false,
         fullscreenControl:false,
