@@ -1,0 +1,417 @@
+/* //////////////signupformcss ends///////////////// */
+#locationsendbutton{
+position: absolute;
+  z-index: 999;
+  display:none;
+ margin: 300px 90px 90px 90px;
+ 
+ 
+}
+button:disabled{
+  background-color: #cccccc;
+}
+header .header {
+  background-color: #fff;
+  
+}
+header a img {
+  width: 134px;
+  
+}
+a:hover{
+  color:gold;
+}
+.loginp-page {
+  float: right;
+  margin: -120px 90px 100px 0;
+  margin-left: auto;
+  
+  
+
+}
+
+
+
+.loginp-page .formp .loginp {
+  margin-top: -52px;
+  
+}
+
+.formp{
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  width: 380px;
+  margin: 18px 0;
+  padding: 40px 30px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.formp input {
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 5px;
+  padding: 8px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  border-radius: 30px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.formp button{
+  margin: 3px auto;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #328f8a;
+  background-image: linear-gradient(45deg, #b95ce4, #4f29cd);
+  width: 80%;
+  border: 0;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 1rem;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 50px;
+  margin-bottom: -10px;
+}
+/*---map css---*/
+#googlemaphomepagekiposition {
+  width: 50%;
+}
+.main-wrapper {
+  margin: 40px 0;
+  padding: 4% 6%;
+  margin-right: 3%;
+  filter: drop-shadow(1px 5px 3px rgba(131, 46, 46, 0.24));
+  position: relative;
+  margin-top: -80px;
+}
+
+.info-wrapper {
+  margin: 15px auto;
+}
+.map-details {
+  text-align: center;
+  color: black;
+  font-size: 1rem;
+  margin: 2px auto;
+  margin-bottom: 90px;
+  padding-bottom: 30px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.search-input {
+  font-size: 1rem;
+  width: 270px;
+  padding: 4.6% 4%;
+  border-radius: 4px;
+  box-shadow: 17px solid red;
+  color: black;
+  font-family: "Times New Roman", Times, serif, "FontAwesome";
+  border: 400px ;
+  background-color:whitesmoke;
+  
+
+  
+}
+
+.signupheader{
+  margin-left: auto;
+  display: flex;
+  padding:0 -20px;
+}
+
+/*---map css---*/
+@media  screen and (max-width:1400px) {
+  .formp{
+    margin-top: -150px;
+  }
+  
+}
+@media screen and (max-width: 1300px) {
+  .formp {
+    margin:30px 330px;
+    
+    
+     
+  }
+
+  #locationsendbutton{
+    margin:-10px 0;
+    position: absolute;
+    
+
+  }
+
+  .search-input:hover,
+  .search-input:focus {
+    border: 2px solid cyan !important;
+    background: #000;
+    color: white;
+  }
+
+  #googlemaphomepagekiposition {
+    position: relative;
+    display: flex;
+    width: 100%;
+    
+  }
+  .search-input {
+    margin-top: 520px;
+    margin-left: 34px;
+    max-width: 370px !important;
+    padding: 10% 5%;
+    color: black;
+  }
+  .main-wrapper {
+    padding: 0% 0% !important;
+    margin: 0px auto;
+    top: -80px;
+    width: 100% !important;
+    
+  }
+}
+
+
+@media screen and (max-width:700px) {
+  .formp{
+    margin:50px 50px;
+    
+   
+  }
+}
+
+
+
+@media screen and (max-width:2200px) {
+  .loginp-page{
+    margin-top: -110px;
+  }
+  .formp{
+    margin-top:-20px;
+  }
+  .formp input{
+    font-size: 1.1rem;
+  }
+  #myformheadertextp{
+  color:red;
+  margin:15px 0;
+  font-size:1.8rem;
+  font-weight:bolder;
+  margin:20px 0 20px 0
+  
+}
+#myformheadertext1p{
+  
+  color:black;
+  font-size:1rem;
+  margin:5px 0;
+}
+  
+}
+@media screen and (max-width:1800px) {
+  #myformheadertextp{
+  color:red;
+  
+  font-size:1.74rem;
+  font-weight:bolder;
+  
+}
+.formp{
+  margin:9px 0 0 0;
+}
+ .formp input{
+    font-size: 1rem;
+  }
+#myformheadertext1p{
+  
+  color:black;
+  font-size:1rem;
+}
+  
+}@media screen and (max-width:1400px) {
+  
+  
+   .formp input{
+    font-size: 1rem;
+  }
+  
+  #myformheadertextp{
+  color:red;
+  
+  font-size:1.7rem;
+  font-weight:bolder;
+  
+}
+#myformheadertext1p{
+  
+  color:black;
+  font-size:0.99rem;
+}
+  
+}@media screen and (max-width:1300px) {
+  .loginp-page{
+    margin:50px 120px ;
+  }
+  .formp{
+    margin:10px 193px;
+    width:420px;
+  }
+   .formp input{
+    font-size: 0.8rem;
+  }
+  #myformheadertextp{
+  color:red;
+  
+  font-size:1.4rem;
+  font-weight:bolder;
+  
+}
+#myformheadertext1p{
+  
+  color:black;
+  font-size:0.889rem;
+}
+  
+}@media screen and (max-width:900px) {
+   .formp{
+    margin:10px 110px;
+    width:370px;
+  }
+   .formp input{
+    font-size: 0.8rem;
+  }
+  #myformheadertextp{
+  color:red;
+  
+  font-size:1.3rem;
+  font-weight:bolder;
+  
+}
+#myformheadertext1p{
+  
+  color:black;
+  font-size:0.89rem;
+}
+  
+}
+
+@media screen and (max-width:700px) {
+   .formp{
+    margin:10px 20px 10px 0px;
+  }
+   #myformheadertextp{
+  color:red;
+  
+  font-size:1.4rem;
+  font-weight:bolder;
+  margin-top:14px;
+  margin-bottom: 24px;
+  
+}
+  #myformheadertext1p{
+  
+  color:black;
+  font-size:0.89rem;
+  margin:15px 0 0 0;
+}
+}@media screen and (max-width:550px) {
+   .formp{
+    margin:10px -20px 10px 60px;
+    
+    width: 320px;
+    
+  }
+  
+  #myformheadertextp{
+  color:red;
+  
+  font-size:1.2rem;
+  font-weight:bolder;
+  
+}
+#myformheadertext1p{
+  
+  color:black;
+  font-size:0.89rem;
+
+}
+  
+}
+
+ @media screen and (max-width:500px) {
+   .formp{
+    margin:10px -80px 10px 50px;
+     
+    width: 343px;
+    
+  }
+   #myformheadertextp{
+  color:red;
+  
+  font-size:1.2rem;
+  font-weight:bolder;
+  
+}
+  #myformheadertext1p{
+  
+  color:black;
+  font-size:0.8rem;
+}
+} 
+@media screen and (max-width:400px) {
+   .formp{
+    margin:10px -90px 10px 0px;
+     
+    width: 320px;
+    
+  }
+   #myformheadertextp{
+  color:red;
+  
+  font-size:1.2rem;
+  font-weight:bolder;
+  
+  
+}
+
+  #myformheadertext1p{
+  
+  color:black;
+  font-size:0.7rem;
+  margin:15px 0 0 0;
+}
+
+} 
+@media screen and (max-width:360px) {
+   .formp{
+    margin:10px -90px 10px 0px;
+     
+    width: 300;
+    
+  }
+   #myformheadertextp{
+  color:red;
+  
+  font-size:1.5rem;
+  font-weight:bolder;
+  margin-top:14px;
+  margin-bottom: 24px;
+  
+}
+  #myformheadertext1p{
+  
+  color:black;
+  font-size:0.89rem;
+  margin:15px 0 0 0;
+}
+
+} 

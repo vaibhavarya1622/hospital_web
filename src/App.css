@@ -1,0 +1,16 @@
+.html{
+  scroll-behavior: smooth;
+  overflow-x: hidden !important;
+  width:100vw !important;
+  margin:0 0 !important;
+}
+.body div html{
+  margin:0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow-x: hidden !important;
+   width:100vw !important;
+  margin:0 0 !important;
+
+}
+

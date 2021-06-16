@@ -1,0 +1,180 @@
+.indexMaphomepage {
+  position: absolute;
+  height: 470px !important;
+  display: flex;
+  width: 870px;
+  float: left;
+  
+}
+#searchbar{
+   border-radius: 50px !important;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width:60%;
+  margin-left: -86px;
+  padding:20px 0px 20px 0;
+  text-align: center;
+  color: "blue";
+  outline: none;
+  text-align: center;
+  
+}
+
+
+@media screen and (min-width:1600px) {
+  #searchbar{
+    margin-left:-96px;
+    
+  }
+  
+  
+  
+  
+}
+@media  screen and (max-width:2000px) {
+  .indexMaphomepage{
+  height: 460px;
+  width:1100px;
+  }
+  #searchbar{
+    margin-left: -58px;
+  }
+ 
+
+  @media screen and (max-width:1800px) {
+   .indexMaphomepage{
+ height: 460px;
+    width: 56vw;
+   }
+   #searchbar{
+    margin-left: -48px;
+  }
+  }
+  @media screen and (max-width:1600px) {
+   .indexMaphomepage{
+ height: 460px;
+    width: 56vw;
+   }
+   #searchbar{
+    margin-left: -30px;
+  }
+  }
+  @media screen and (max-width:1500px){
+    .indexMaphomepage{
+      height: 440px;
+      width: 750px;
+      
+    }
+     #searchbar{
+    margin-left: -20px;
+  }
+    
+    
+  }
+   
+ 
+  
+}
+
+
+@media (max-width: 1300px) {
+  .input{
+    font-size: 0.99em;
+  padding:9% 1.5%;
+  width:270px;
+  margin-left:-56px;
+  box-shadow: 17px solid red;
+  color: black;
+  font-family: "Times New Roman", Times, serif, "FontAwesome";
+  border: 400px;
+  background-color: whitesmoke;
+  outline: none;
+  }
+  .indexMaphomepage {
+    position: relative !important;
+    margin: 70px 0 -100px 0 !important;
+    width: 100vw !important;
+    
+  }
+  #searchbar{
+
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  top:80px;
+  left:30%;
+  margin:10px 0;
+  order:2;
+  margin-left:-30px;
+ padding:3% 0;
+  text-align: center;
+  color: "blue";
+}
+
+  
+}
+   
+  @media screen and (max-width: 1300px) {
+    .indexMap {
+      width: 1290px;
+      height: 516px;
+      
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .indexMap {
+      width: 1000px;
+      height: 476px;
+    }
+  }
+  @media screen and (max-width: 960px) {
+    .indexMap {
+      width: 950px;
+      height: 380px;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .indexMap {
+      width: 630px;
+      height: 380px;
+    }
+  } 
+
+.input{
+  
+  
+  font-size: 0.99em;
+  padding:2% 1.5%;
+  width:288px;
+  
+  box-shadow: 17px solid red;
+  color: black;
+  font-family: "Times New Roman", Times, serif, "FontAwesome";
+  border: 400px;
+  background-color: whitesmoke;
+  outline: none;
+}
+.button {
+  margin-right: 15px;
+}
+.myLocationBtn:hover {
+  background-color: white;
+  color: white;
+}
+.myLocationBtn {
+  border-radius: 10px;
+  
+}
+.searchHospital {
+  border: none;
+  width: 200px;
+  margin-left: 1rem;
+}
+.searchHospital:focus {
+  outline: none;
+}
+.myLocationBtn:focus {
+  outline: none;
+}
