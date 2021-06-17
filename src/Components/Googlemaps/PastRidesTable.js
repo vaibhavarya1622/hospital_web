@@ -9,13 +9,17 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Fab from '@material-ui/core/Fab';
+import { DataGrid} from '@material-ui/data-grid';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Modal from '@material-ui/core/Modal';
 import PastRideMap from './PastRideMap.js'
 import Drawer from '@material-ui/core/Drawer'
+import '@material-ui/icons'
 import axios from 'axios'
 import moment from 'moment'
+import MaterialTable from 'material-table';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import {
   ButtonDropdown,
   DropdownToggle,
@@ -44,6 +48,7 @@ const StyledTableRow = withStyles((theme) => ({
     },
   },
 }))(TableRow);
+
 const useStyles=makeStyles(theme=>({
   root:{
     width:'100%'
@@ -63,6 +68,12 @@ const useStyles=makeStyles(theme=>({
 const PastRides=()=>{
   const classes=useStyles()
   const [rides,setRides]=useState([])
+  const [rideDetail,setRideDetail]=useState({})
+  const [tableOpen,setTableOpen]=useState(false)
+
+  const handleDrawerToggle=()=>{
+    setTableOpen(!tableOpen)
+  }
 
   useEffect(() => {
     axios
@@ -74,7 +85,7 @@ const PastRides=()=>{
         console.log(data);
         const arr = data.map((data) => {
           return {
-            name: data["pickedBy"].name,
+            name: data['name'],
             age: data.age,
             caseprior: data.casePrior,
             pname: data.name,
@@ -97,16 +108,17 @@ const PastRides=()=>{
       });
   }, []);
 
-  const columns=[
-    {id:'name',label:'name',minWidth:100,align:'right'},
-    {id:'case',label:'case',minWidth:100,align:'right'},
-    {id:'date',label:'date',minWidth:100,format:(value)=>moment(value).format('D/MM/YYYY'),align:'right'}
-  ]
-
+   const columns=[
+     {field:'id',  title:'Id',hidden:true},
+     {field:'name',title:'Name'},
+     {field:'case',title:'Case'},
+     {field:'date',title:'Date',type:'date'}
+   ]
   const rows=rides.map((ride)=>{
     return {id:ride['_id'],name:ride['name'],case:ride['pcase'],date:ride['date']}
   })
 
+ 
   // const rows=[
   //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:1},
   //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:2},
@@ -140,69 +152,7 @@ const PastRides=()=>{
   //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:30},
   //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:31},
   // ]
-  const [tableOpen,setTableOpen]=useState(false)
-  const [page,setPage]=useState(0)
-  const [rowsPerPage,setRowsPerPage]=useState(10)
 
-  const handlePageChange=(event,newPage)=>{
-    setPage(newPage)
-  }
-
-  const handleChangeRowsPerPage=(event)=>{
-    setRowsPerPage(+event.target.value)
-    setPage(0)
-  }
-
-  const handleDrawerToggle=()=>{
-    setTableOpen(table=>!table)
-  }
-  
-  const RideTable=(
-    <>
-  <TableContainer component={Paper}>
-    <Table stickyHeader aria-label="sticky table">
-      <TableHead classes={classes.root}>
-        <StyledTableRow>
-          {columns.map((column) => (
-            <StyledTableCell
-              key={column.id}
-              align={column.align}
-              style={{ minWidth: column.minWidth }}
-            >
-              {column.label}
-            </StyledTableCell>
-          ))}
-        </StyledTableRow>
-      </TableHead>
-      <TableBody>
-        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-          return (
-            <StyledTableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-              {columns.map((column) => {
-                const value = row[column.id];
-                return (
-                  <StyledTableCell key={column.id} align={column.align}>
-                    {value}
-                  </StyledTableCell>
-                );
-              })}
-            </StyledTableRow>
-          );
-        })}
-      </TableBody>
-    </Table>
-  </TableContainer>
-  <TablePagination
-  rowsPerPageOptions={[10, 25, 100]}
-    component="div"
-    count={rows.length}
-    rowsPerPage={rowsPerPage}
-    page={page}
-    onChangePage={handlePageChange}
-    onChangeRowsPerPage={handleChangeRowsPerPage}
-  />
-  </>
-  )
 
 return (
       <main>
@@ -214,8 +164,13 @@ return (
         <DropdownToggle >
         <ArrowForwardIosIcon color='primary' size='medium' />
         </DropdownToggle>
-        <DropdownMenu style={{width:'500px'}}>
-          {RideTable}
+        <DropdownMenu style={{maxWidth:'99vw',width:'500px',height:'500px',padding:'0'}}>
+        <MaterialTable columns={columns}
+       data={rows} 
+       title='Past Ride'
+       options={{
+         filtering:true,
+         search:false}}/>
         </DropdownMenu>
       </ButtonDropdown>
       <PastRideMap />
