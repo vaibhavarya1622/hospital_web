@@ -11,7 +11,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Fab from '@material-ui/core/Fab';
 import { DataGrid} from '@material-ui/data-grid';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import LastPageIcon from '@material-ui/icons/LastPage';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import Modal from '@material-ui/core/Modal';
 import PastRideMap from './PastRideMap.js'
 import Drawer from '@material-ui/core/Drawer'
@@ -152,7 +156,9 @@ const PastRides=()=>{
   //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:30},
   //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:31},
   // ]
-
+const showRideDetail=()=>{
+  console.log('Click')
+}
 
 return (
       <main>
@@ -165,12 +171,22 @@ return (
         <ArrowForwardIosIcon color='primary' size='medium' />
         </DropdownToggle>
         <DropdownMenu style={{maxWidth:'99vw',width:'500px',height:'500px',padding:'0'}}>
-        <MaterialTable columns={columns}
-       data={rows} 
-       title='Past Ride'
+        <MaterialTable 
+        columns={columns}
+        data={rows} 
+        icons={{
+         Filter:FilterListIcon,
+         FirstPage:FirstPageIcon,
+         LastPage:LastPageIcon,
+         PreviousPage:ArrowBackIcon,
+         NextPage:ArrowForwardIcon
+       }}
+       onRowClick={showRideDetail}
        options={{
          filtering:true,
-         search:false}}/>
+         search:false,
+         toolbar:false
+         }}/>
         </DropdownMenu>
       </ButtonDropdown>
       <PastRideMap />
