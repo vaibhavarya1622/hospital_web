@@ -2,16 +2,13 @@
     background-image: linear-gradient(to right, #C504B6, #4B038E);
     opacity: 0.89;
     border-radius: 30px;
-    z-index: 2;
+    z-index: 100;
+	width:99vw;
     margin-bottom: 40px;
 	position: absolute;
 	padding:20px;
-	margin:0 130px;
 	top: 530px;
 	animation: fadeIn ease-in-out 2s  1  forwards;
-
-	
-	
 }
 @keyframes fadeIn {
 	0%{
@@ -55,16 +52,9 @@ hr {
 	cursor: pointer;
 }
 
-
-
-
-
 @media screen and (max-width: 2000px) {
     .carddetails {
-      top: 500px;
-	  
-	  margin:0 170px;
-	  width:1500px;
+      top: 500px;	 
     }
 	.card-body{
 		margin:0 120px;
@@ -88,10 +78,7 @@ hr {
 
   @media screen and (max-width: 1800px) {
     .carddetails {
-      top: 530px;
-	  
-	  margin:0 140px;
-	  width:85vw;
+      top: 530px;	  
     }
 	.card-body{
 		margin:0 10px 0 90px;
@@ -101,9 +88,6 @@ hr {
 @media screen and (max-width: 1600px) {
     .carddetails {
       top: 560px;
-	  
-	  margin:0 150px;
-	  width:79vw;
     }
 	.card-body{
 		margin:0 -40px;
@@ -113,8 +97,6 @@ hr {
   @media screen and (max-width: 1490px) {
     .carddetails {
       top: 490px;
-	  margin:0 110px;
-	  width:84vw;
     }
 	.card-body{
 		margin:0 150px;
@@ -130,8 +112,6 @@ hr {
 @media screen and (max-width: 1365px) {
      .carddetails {
       top: 510px;
-	  margin:0 90px;
-	  width:87vw;
     }
 	.card-body{
 		margin:0 110px;
@@ -147,8 +127,6 @@ hr {
 @media screen and (max-width: 1240px) {
     .carddetails {
       top: 500px;
-	  margin:0 120px;
-	  width:81vw;
     }
 	.card-body{
 		margin:0 30px;
@@ -164,8 +142,6 @@ hr {
   @media screen and (max-width: 1120px) {
     .carddetails{
       top: 530px;
-	  margin:0 100px;
-	  
     }
 	.shadow {
 		box-shadow: 0 8px 6px -6px black;
@@ -185,8 +161,6 @@ hr {
    @media screen and (max-width: 1075px) {
     .carddetails {
       top: 510px;
-	  margin:0 130px;
-	  width:80vw;
     }
 	.shadow {
 		box-shadow: 0 8px 6px -6px black;
@@ -208,8 +182,6 @@ hr {
     @media screen and (max-width: 1020px) {
     .carddetails{
       top: 300px;
-	  margin:0 250px;
-	  width:50vw;
     }
 	.card-body{
 		margin: 0 -20px;
@@ -232,8 +204,6 @@ hr {
     @media screen and (max-width: 895px) {
     .carddetails{
       top: 340px;
-	  width:60vw;
-	  margin: 0 160px;
     }
 	.card-body{
 		margin:0 -10px;
@@ -276,8 +246,6 @@ hr {
     @media screen and (max-width: 740px) {
     .carddetails {
       top: 290px;
-	  width:490px;
-	  margin:0 100px;
     }
 	.shadow {
 		box-shadow: 0 8px 6px -6px black;
@@ -299,8 +267,6 @@ hr {
      @media screen and (max-width: 615px) {
     .carddetails {
       top: 290px;
-	  width:480px;
-	  margin:0 60px;
     }
 	.shadow {
 		box-shadow: 0 8px 6px -6px black;
@@ -319,7 +285,6 @@ hr {
   }
 
 @media screen and (max-width: 550px) {
-   
 	.shadow {
 		box-shadow: 0 8px 6px -6px black;
 		background-color: rgb(248, 244, 244);
@@ -349,8 +314,6 @@ hr {
      @media screen and (max-width: 460px) {
     .carddetails {
       top: 290px;
-	  width:348px;
-	  margin:0 30px;
     }
 	.card-body{
 		margin:0 -50px;
@@ -372,8 +335,6 @@ hr {
 	}
   }
 
-
-  
      @media screen and (max-width: 400px) {
     .carddetails {
       top: 290px;

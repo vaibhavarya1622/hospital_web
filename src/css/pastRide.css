@@ -1,0 +1,52 @@
+.carddetails{
+    background-image: linear-gradient(to right, #C504B6, #4B038E);
+    opacity: 0.89;
+    border-radius: 30px;
+    z-index: 100;
+	width:80vw;
+    left:10%;
+	position: absolute;
+	padding:15px;
+    bottom: -100px;
+	animation: fadeIn ease-in-out 2s  1  forwards;
+}
+@keyframes fadeIn {
+	0%{
+		opacity:0;
+	}
+	100%{
+		opacity: 0.8;
+	}
+}
+.card-header{
+    color:white;
+    font-size: 1.8rem;
+    display:flex;
+    justify-content: space-between;
+}
+.card-body{
+}
+.card-box{
+    background-color: white;
+    margin:10px;
+    padding:10px;
+    text-align: center;
+    border-radius: 15px;
+    height: 60px;
+}
+@media screen and (min-width:1400px){
+    .carddetails{
+        bottom:-16px;
+    }
+}
+@media screen and (max-width:1380px){
+    .carddetails{
+        bottom:16px;
+    }
+}
+@media screen and (max-width:860px){
+    .carddetails{
+        position: relative;
+        bottom:0;
+    }
+}

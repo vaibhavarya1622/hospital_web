@@ -1,13 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
 import Fab from '@material-ui/core/Fab';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
@@ -15,14 +7,15 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import MenuIcon from '@material-ui/icons/Menu';
 import Modal from '@material-ui/core/Modal';
 import PastRideMap from './PastRideMap.js'
 import Drawer from '@material-ui/core/Drawer'
-import '@material-ui/icons'
 import axios from 'axios'
 import moment from 'moment'
 import MaterialTable from 'material-table';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import CloseIcon from '@material-ui/icons/Close';
 import {
   ButtonDropdown,
   DropdownToggle,
@@ -33,43 +26,10 @@ import {
   Col,
 } from "reactstrap";
 import './../../css/pastRide.css'
-
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
-
-const useStyles=makeStyles(theme=>({
-  root:{
-    width:'100%'
-  },
-  paper:{
-    top:'20%',
-  },
-  drawerPaper: {
-    width: 450,
-    background: 'seashell',
-    [theme.breakpoints.up('1650')]:{
-      width:'20%'
-    }
-  }
-}))
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const PastRides=()=>{
-  const classes=useStyles()
+  const [cardOpen, setCardOpen] = useState(false);
   const [rides,setRides]=useState([])
   const [rideDetail,setRideDetail]=useState({})
   const [tableOpen,setTableOpen]=useState(false)
@@ -91,12 +51,13 @@ const PastRides=()=>{
             name: data['name'],
             age: data.age,
             caseprior: data.casePrior,
-            pname: data.name,
-            driverno: data["pickedBy"].mobileNo,
+            driverNo: data["pickedBy"].mobileNo,
+            driverName:data['pickedBy'].name,
             pcase: data.pcase,
+            isPicked:data.isPicked,
             date: moment(data['createdAt']).format('D/MM/YYYY'),
             rideid: data.RideId,
-            _id: data["pickedBy"]._id,
+            driverID: data["pickedBy"]._id,
             guardianNo: data.guardianNo,
             patientNo: data.patientNo,
             polyline: data.patientPolyline,
@@ -115,49 +76,55 @@ const PastRides=()=>{
      {field:'id',  title:'Id',hidden:true},
      {field:'name',title:'Name'},
      {field:'case',title:'Case'},
-     {field:'date',title:'Date',type:'date'}
+     {field:'date',title:'Date'},
+     {field:'age',title:'Age',hidden:true,type:'numeric'},
+     {field:'casePrior',title:'Case Prior',hidden:true},
+     {field:'isPicked',title:'is Picked',hidden:true},
+     {field:'driverNo',title:'Driver Number',hidden:true},
+     {field:'driverName',title:'Driver Name',hidden:true},
+     {field:'guardianNo',title:'Guardian Number',hidden:true},
+     {field:'patientNo',title:'Patient Number',hidden:true},
+     {field:'patientPolyline',title:'Patient Polyline',hidden:true},
+     {field:'hospitalPolyline',title:'Hospital Polyline',hidden:true},
+     {field:'hospitalCoords',title:'Hospital Coordinates',hidden:true},
    ]
   const rows=rides.map((ride)=>{
-    return {id:ride['_id'],name:ride['name'],case:ride['pcase'],date:ride['date']}
+    return {id:ride['_id'],name:ride['name'],case:ride['pcase'],date:ride['date'],'age':ride['age'],
+    casePrior:ride['caseprior'],driverNo:ride['driverNo'],driverName:ride['driverName'],
+    guardianNo:ride['guardianNo'],patientNo:ride['patientNo'],isPicked:ride['isPicked']
+  }
   })
 
- 
-  // const rows=[
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:1},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:2},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:3},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:4},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:5},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:6},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:7},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:8},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:9},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:10},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:11},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:12},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:13},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:14},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:15},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:16},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:17},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:18},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:19},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:20},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:21},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:22},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:23},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:24},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:25},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:26},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:27},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:28},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:29},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:30},
-  //   {name:'fskd',case:'fsdf',date:'22/03/2020',id:31},
-  // ]
-const showRideDetail=()=>{
-  console.log('Click')
+const showRideDetail=(event,rowData)=>{
+  setRideDetail(rowData)
+  setCardOpen(true)
 }
+const hideRideDetail=()=>{
+  setCardOpen(false)
+}
+const rideDetailBox=(
+  <div className="carddetails">
+          <div className="card-header">
+              Ride details :
+          <CloseIcon style={{cursor:'pointer',fontSize:'2rem'}} onClick={hideRideDetail}/>
+          </div>
+          <div className="card-body">
+            <Container>
+              <Row>
+                <Col><div className='card-box'>Name:{rideDetail.name}</div></Col>
+                <Col><div className='card-box'>Case:{rideDetail.case}</div></Col>
+                <Col><div className='card-box'>Age:{rideDetail.age}</div></Col>
+                <Col><div className='card-box'>Guardian {rideDetail.guardianNo}</div></Col>
+              </Row>
+              <Row>
+              <Col><div className='card-box'>Driver Name:{rideDetail.driverName}</div></Col>
+              <Col><div className='card-box'>Case Priority:{rideDetail.casePrior}</div></Col>
+              <Col><div className='card-box'>Driver Number:{rideDetail.driverNo}</div></Col>
+              </Row>
+            </Container>
+          </div>
+        </div>
+)
 
 return (
       <main>
@@ -165,11 +132,11 @@ return (
       direction='right'
       isOpen={tableOpen}
       toggle={handleDrawerToggle}
-      style={{zIndex:'10',color:'#6610f2'}}>
-        <DropdownToggle >
-        <ArrowForwardIosIcon color='primary' size='medium' />
+      style={{zIndex:'10',backgroundColor:'white'}}>
+        <DropdownToggle style={{border:'none',backgroundColor:'white'}}>
+          <MenuIcon color='primary' size='large' />
         </DropdownToggle>
-        <DropdownMenu style={{maxWidth:'99vw',width:'500px',height:'500px',padding:'0'}}>
+        <DropdownMenu style={{maxWidth:'99vw',padding:'0'}}>
         <MaterialTable 
         columns={columns}
         data={rows} 
@@ -189,6 +156,7 @@ return (
         </DropdownMenu>
       </ButtonDropdown>
       <PastRideMap />
+      {cardOpen && rideDetailBox}
         </main>
 )
 }
