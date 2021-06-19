@@ -63,7 +63,15 @@
 }
 @media screen and (max-width:1060px){
     .carddetails{
-        position: absolute;
         bottom:32px;
     }
+}
+@media screen and (max-width:500px){
+.card-box{
+    height:30px;
+    font-size: 0.7rem;
+}
+.carddetails{
+    bottom: -18px;
+}
 }
