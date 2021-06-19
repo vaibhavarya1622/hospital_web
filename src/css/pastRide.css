@@ -29,7 +29,6 @@
 .card-box{
     background-color: white;
     margin:10px;
-    padding:10px;
     text-align: center;
     border-radius: 15px;
     height: 60px;
@@ -51,17 +50,20 @@
         font-size: 1.5rem;
         height:5rem;
         font-weight: 600;
-        padding:0;
     }
 }
 @media screen and (max-width:1380px){
     .carddetails{
         bottom:0px;
     }
+    .card-body{
+        font-size:1rem;
+        font-weight: 500;
+    }
 }
-@media screen and (max-width:860px){
+@media screen and (max-width:1060px){
     .carddetails{
-        position: relative;
-        bottom:0;
+        position: absolute;
+        bottom:32px;
     }
 }

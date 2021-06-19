@@ -26,10 +26,12 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import useWindowDimensions from './getWindowDimensions'
 import './../../css/pastRide.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const PastRides=()=>{
+  const {height,width}=useWindowDimensions()
   const [cardOpen, setCardOpen] = useState(false);
   const [rides,setRides]=useState([])
   const [rideDetail,setRideDetail]=useState({})
@@ -109,8 +111,9 @@ const showRideDetail=(event,rowData)=>{
 const hideRideDetail=()=>{
   setCardOpen(false)
 }
-const rideDetailBox=(
-  <div className="carddetails">
+const rideDetailBox=
+  width>0?
+  (<div className="carddetails">
           <div className="card-header">
               Ride details :
           <CloseIcon style={{cursor:'pointer',fontSize:'2rem'}} onClick={hideRideDetail}/>
@@ -118,22 +121,23 @@ const rideDetailBox=(
           <div className="card-body">
             <Container>
               <Row>
-                <Col><div className='card-box'>Name:{rideDetail.name}</div></Col>
-                <Col><div className='card-box'>Case:{rideDetail.case}</div></Col>
-                <Col><div className='card-box'>Age:{rideDetail.age}</div></Col>
-                <Col><div className='card-box'>Guardian {rideDetail.guardianNo}</div></Col>
+                <Col xs='12' sm='6' lg='3'><div className='card-box'>Name:{rideDetail.name}</div></Col>
+                <Col xs='12' sm='6' lg='3'><div className='card-box'>Case:{rideDetail.case}</div></Col>
+                <Col xs='12' sm='6' lg='3'><div className='card-box'>Age:{rideDetail.age}</div></Col>
+                <Col xs='12' sm='6' lg='3'><div className='card-box'>Guardian {rideDetail.guardianNo}</div></Col>
               </Row>
               <Row>
-              <Col><div className='card-box'>Driver Name:{rideDetail.driverName}</div></Col>
-              <Col><div className='card-box'>Case Priority:{rideDetail.casePrior}</div></Col>
-              <Col><div className='card-box'>Driver Number:{rideDetail.driverNo}</div></Col>
-              <Col><div className='card-box'>{rideDetail.isVerified?'Verified Driver':'Not Verified Driver'}</div></Col>
+              <Col xs='12' sm='6' lg='3'><div className='card-box'>Driver Name:{rideDetail.driverName}</div></Col>
+              <Col xs='12' sm='6' lg='3'><div className='card-box'>Case Priority:{rideDetail.casePrior}</div></Col>
+              <Col xs='12' sm='6' lg='3'><div className='card-box'>Driver Number:{rideDetail.driverNo}</div></Col>
+              <Col xs='12' sm='6' lg='3'><div className='card-box'>{rideDetail.isVerified?'Verified Driver':'Not Verified Driver'}</div></Col>
               </Row>
             </Container>
           </div>
-        </div>
-)
-
+        </div>)
+      :
+      null
+      
 return (
       <main>
       <ButtonDropdown
