@@ -7,9 +7,10 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import MenuIcon from '@material-ui/icons/Menu';
 import Modal from '@material-ui/core/Modal';
-import PastRideMap from './PastRideMap.js'
+import PastRideMap from './PastRideMap'
 import Drawer from '@material-ui/core/Drawer'
 import axios from 'axios'
 import moment from 'moment'
@@ -45,31 +46,31 @@ const PastRides=()=>{
       })
       .then((res) => {
         const data = res.data;
-        console.log(data);
         const arr = data.map((data) => {
+        console.log(data);
           return {
             name: data['name'],
             age: data.age,
             caseprior: data.casePrior,
-            driverNo: data["pickedBy"].mobileNo,
-            driverName:data['pickedBy'].name,
+            driverNo: data.pickedBy?data['pickedBy'].mobileNo:'Not Available',
+            driverName:data.pickedBy?data['pickedBy'].name:'Not Available',
+            isVerified:data.pickedBy?data['pickedBy'].isVerified:'Not Available',
             pcase: data.pcase,
-            isPicked:data.isPicked,
             date: moment(data['createdAt']).format('D/MM/YYYY'),
             rideid: data.RideId,
-            driverID: data["pickedBy"]._id,
+            driverID:data.pickedBy?data['pickedBy'].d:'Not Available',
             guardianNo: data.guardianNo,
             patientNo: data.patientNo,
-            polyline: data.patientPolyline,
             pickupcoordinates: data["pickUplocation"].coordinates,
             hospitalcoordinates:
               data["hospital"]["hospitalLocation"].coordinates,
-            ispicked: data.isPicked,
-            hospitalpolyline: data.hospitalPolyline,
           };
         });
         setRides(arr);
-      });
+      })
+      .catch(err=>{
+        console.log(err)
+      })
   }, []);
 
    const columns=[
@@ -79,25 +80,31 @@ const PastRides=()=>{
      {field:'date',title:'Date'},
      {field:'age',title:'Age',hidden:true,type:'numeric'},
      {field:'casePrior',title:'Case Prior',hidden:true},
-     {field:'isPicked',title:'is Picked',hidden:true},
+     {field:'isVerified',title:'is Verified',hidden:true},
      {field:'driverNo',title:'Driver Number',hidden:true},
      {field:'driverName',title:'Driver Name',hidden:true},
      {field:'guardianNo',title:'Guardian Number',hidden:true},
      {field:'patientNo',title:'Patient Number',hidden:true},
-     {field:'patientPolyline',title:'Patient Polyline',hidden:true},
-     {field:'hospitalPolyline',title:'Hospital Polyline',hidden:true},
-     {field:'hospitalCoords',title:'Hospital Coordinates',hidden:true},
+     {field:'patientpolyline',title:'Patient Polyline',hidden:true},
+     {field:'hospitalpolyline',title:'Hospital Polyline',hidden:true},
+     {field:'hospitalcoordinates',title:'Hospital Coordinates',hidden:true},
+     {field:'pickupcoordinates',title:'Pick Up Coordinates',hidden:true},
+
    ]
   const rows=rides.map((ride)=>{
     return {id:ride['_id'],name:ride['name'],case:ride['pcase'],date:ride['date'],'age':ride['age'],
     casePrior:ride['caseprior'],driverNo:ride['driverNo'],driverName:ride['driverName'],
-    guardianNo:ride['guardianNo'],patientNo:ride['patientNo'],isPicked:ride['isPicked']
+    guardianNo:ride['guardianNo'],patientNo:ride['patientNo'],isVerified:ride['isVerified'],
+    hospitalcoordinates:ride['hospitalcoordinates'],hospitalpolyline:ride['hospitalpolyline'],patientpolyline:ride['patientpolyline'],
+    pickupcoordinates:ride['pickupcoordinates']
   }
   })
 
 const showRideDetail=(event,rowData)=>{
+  console.log(rowData)
   setRideDetail(rowData)
   setCardOpen(true)
+  setTableOpen(false)
 }
 const hideRideDetail=()=>{
   setCardOpen(false)
@@ -120,6 +127,7 @@ const rideDetailBox=(
               <Col><div className='card-box'>Driver Name:{rideDetail.driverName}</div></Col>
               <Col><div className='card-box'>Case Priority:{rideDetail.casePrior}</div></Col>
               <Col><div className='card-box'>Driver Number:{rideDetail.driverNo}</div></Col>
+              <Col><div className='card-box'>{rideDetail.isVerified?'Verified Driver':'Not Verified Driver'}</div></Col>
               </Row>
             </Container>
           </div>
@@ -136,7 +144,7 @@ return (
         <DropdownToggle style={{border:'none',backgroundColor:'white'}}>
           <MenuIcon color='primary' size='large' />
         </DropdownToggle>
-        <DropdownMenu style={{maxWidth:'99vw',padding:'0'}}>
+        <DropdownMenu style={{maxWidth:'99vw',padding:'0',minWidth:'30vw'}}>
         <MaterialTable 
         columns={columns}
         data={rows} 
@@ -145,17 +153,19 @@ return (
          FirstPage:FirstPageIcon,
          LastPage:LastPageIcon,
          PreviousPage:ArrowBackIcon,
-         NextPage:ArrowForwardIcon
+         NextPage:ArrowForwardIcon,
+         SortArrow:ArrowUpwardIcon
        }}
        onRowClick={showRideDetail}
        options={{
          filtering:true,
          search:false,
-         toolbar:false
+         toolbar:false,
+         pageSizeOptions:[]
          }}/>
         </DropdownMenu>
       </ButtonDropdown>
-      <PastRideMap />
+      <PastRideMap rideDetail={rideDetail}/>
       {cardOpen && rideDetailBox}
         </main>
 )

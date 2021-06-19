@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-import io from "socket.io-client";
 import "../../css/Map.css";
 import hospitalicon from "../../images/hospitalicon.png";
 import drivericon from "../../images/drivericon.png";
@@ -19,122 +17,48 @@ var map,
   driverPath;
 
 const HomePageSideMap = (props) => {
-  console.log(`Ispicked value is ${props.ispicked}`);
-  console.log(
-    `red color polyline is patient polyline and value is ${props.polyline}`
-  );
-  console.log(
-    `green color polyline is hospital polyline and value is ${props.hospitalpolyline}`
-  );
   useEffect(() => {
-    if (map && props.pickupcoordinates.length > 0) {
+    if (map && props.rideDetail.pickupcoordinates.length > 0) {
       map.setCenter({
-        lat: props.pickupcoordinates[0],
-        lng: props.pickupcoordinates[1],
+        lat: props.rideDetail.pickupcoordinates[0],
+        lng: props.rideDetail.pickupcoordinates[1],
       });
       usermarker.setPosition({
-        lat: props.pickupcoordinates[0],
-        lng: props.pickupcoordinates[1],
+        lat: props.rideDetail.pickupcoordinates[0],
+        lng: props.rideDetail.pickupcoordinates[1],
       });
       usermarker.setMap(map);
       hospitalmarker.setPosition({
-        lat: props.hospitalcoordinates[0],
-        lng: props.hospitalcoordinates[1],
+        lat: props.rideDetail.hospitalcoordinates[0],
+        lng: props.rideDetail.hospitalcoordinates[1],
       });
       hospitalmarker.setMap(map);
     }
+  }, [props.rideDetail]);
 
-    if (
-      (props.polyline !== undefined && map) ||
-      (props.hospitalpolyline !== undefined && map)
-    ) {
-      const visibilepolyline = props.ispicked
-        ? props.hospitalpolyline
-        : props.polyline;
-      poly = decodePolyline(visibilepolyline);
-      if (props.ispicked === true) {
-        driverPath.setOptions({
-          strokeColor: "green",
-        });
-      } else {
-        driverPath.setOptions({
-          strokeColor: "red",
-        });
-      }
-      // console.log(poly);
-      // const hospitallocation = [poly[0].lat, poly[0].lng];
-      // const patientlocation = [
-      //   poly[poly.length - 1].lat,
-      //   poly[poly.length - 1].lng,
-      // ];
-      // console.log(
-      //   `Hospital location getting from polyline: [${hospitallocation}]`
-      // );
-      // console.log(
-      //   `Patient location getting from polyline : [${patientlocation}]`
-      // );
-
-      driverPath.setPath(poly);
-      driverPath.setMap(map);
-    } else if (map) {
-      driverPath.setMap(null);
-    }
-  }, [props.pickupcoordinates]);
-
-  const userendpoi = "https://server.prioritypulse.co.in/usertrack";
-  const driverendpoi = "https://server.prioritypulse.co.in/drivertrack";
 
   const [userLocation, setUserLocation] = useState([]);
   const [driverLocation, setDriverLocation] = useState([]);
 
-  usersocket = io(userendpoi);
-  driversocket = io(driverendpoi);
-
-  // useEffect(() => {
-  //   if (props.rideobjectid !== "") {
-  //     usersocket.emit("join", { roomid: props.rideobjectid });
-  //     usersocket.on("message", (res) => {
-  //       console.log("user", res);
-  //     });
-  //     // usersocket.emit("sendUserLocation", { coordinates: userLocation });
-  //     usersocket.on("userlocation", ({ coordinates }) => {
-  //       console.log("user", coordinates);
-  //       setUserLocation(coordinates);
-  //     });
-  //   }
-  // }, [props.rideobjectid]);
-
-  // useEffect(() => {
-  //   if (props._id !== "") {
-  //     driversocket.emit("join", { roomid: props._id });
-  //     driversocket.on("message", (res) => {
-  //       console.log("driver", res);
-  //     });
-  //     driversocket.on("driverlocation", ({ coordinates }) => {
-  //       console.log("driver", coordinates);
-  //       setDriverLocation(coordinates);
-  //     });
-  //   }
-  // }, [props._id]);
-
-  // useEffect(() => {
-  //   var options = {
-  //     maximumAge: 10000,
-  //     timeout: 10000,
-  //     enableHighAccuracy: true,
-  //   };
-  //   var watchID = navigator.geolocation.watchPosition(
-  //     onSuccess,
-  //     onError,
-  //     options
-  //   );
-  // }, []);
-  // function onSuccess(pos) {
-  //   setUserLocation([pos.coords.latitude, pos.coords.longitude]);
-  // }
-  // function onError(error) {
-  //   alert("code: " + error.code + "\n" + "message" + error.message + "\n");
-  // }
+ 
+  useEffect(() => {
+    var options = {
+      maximumAge: 10000,
+      timeout: 10000,
+      enableHighAccuracy: true,
+    };
+    var watchID = navigator.geolocation.watchPosition(
+      onSuccess,
+      onError,
+      options
+    );
+  }, []);
+  function onSuccess(pos) {
+    setUserLocation([pos.coords.latitude, pos.coords.longitude]);
+  }
+  function onError(error) {
+    alert("code: " + error.code + "\n" + "message" + error.message + "\n");
+  }
 
   /*----------------------------current user location initially when page loads -------------------*/
   const myLocation = () => {
