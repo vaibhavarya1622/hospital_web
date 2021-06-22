@@ -5,9 +5,9 @@
     z-index: 100;
 	width:75vw;
     left:10%;
-	position: absolute;
+	position: relative;
 	padding:5px;
-    bottom: -100px;
+    margin-top: -200px;
 	animation: fadeIn ease-in-out 2s  1  forwards;
 }
 @keyframes fadeIn {
@@ -36,7 +36,7 @@
 
 @media screen and (min-width:1400px){
     .carddetails{
-        bottom:32px;
+        margin-top: -16rem;
     }
     .card-box{
         font-size: 1.2rem;
@@ -46,7 +46,7 @@
 }
 @media screen and (min-width:1700px){
     .carddetails{
-        bottom:32px;
+        margin-top: -19rem;
     }
     .card-box{
         font-size: 1.5rem;
@@ -56,7 +56,7 @@
 }
 @media screen and (max-width:1399px){
     .carddetails{
-        bottom:0px;
+        margin-top: -16rem;
     }
     .card-body{
         font-size:1rem;
@@ -65,20 +65,19 @@
 }
 @media screen and (max-width:1060px){
     .carddetails{
-        bottom:7.5rem;
+        margin-top: -24rem;
     }
 }
-@media screen and (max-width:500px){
+@media screen and (max-width:580px){
 .card-box{
     height:30px;
     font-size: 0.7rem;
 }
 .carddetails{
-    bottom: 15px;
+    margin-top: -27rem;
 }
 }
 @media screen and (max-width:350px){
     .carddetails{
-        bottom: -119px;
     }
 }
