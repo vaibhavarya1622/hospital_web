@@ -38,7 +38,7 @@ const PastRides=()=>{
   const [tableOpen,setTableOpen]=useState(false)
 
   const handleDrawerToggle=()=>{
-    setTableOpen(!tableOpen)
+    setTableOpen(true)
   }
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const PastRides=()=>{
             driverName:data.pickedBy?data['pickedBy'].name:'Not Available',
             isVerified:data.pickedBy?data['pickedBy'].isVerified:'Not Available',
             pcase: data.pcase,
-            date: moment(data['createdAt']).format('D/MM/YYYY'),
+            date: new Date(data['createdAt']),
             rideid: data.RideId,
             driverID:data.pickedBy?data['pickedBy'].d:'Not Available',
             guardianNo: data.guardianNo,
@@ -79,7 +79,7 @@ const PastRides=()=>{
      {field:'id',  title:'Id',hidden:true},
      {field:'name',title:'Name'},
      {field:'case',title:'Case'},
-     {field:'date',title:'Date'},
+     {field:'date',title:'Date',type:'date'},
      {field:'age',title:'Age',hidden:true,type:'numeric'},
      {field:'casePrior',title:'Case Prior',hidden:true},
      {field:'isVerified',title:'is Verified',hidden:true},
@@ -137,19 +137,21 @@ const rideDetailBox=
         </div>)
       :
       null
-      
+      let tableStyle={
+        transform:'translateX(-324px)'
+      }
+      if(tableOpen){
+        tableStyle={
+          transition: 'transform 0.2s cubic-bezier(0, 0, 0.8, 1) 0ms'
+        }
+      }
 return (
       <main>
-      <ButtonDropdown
-      direction='right'
-      isOpen={tableOpen}
-      toggle={handleDrawerToggle}
-      style={{zIndex:'10',backgroundColor:'white'}}>
-        <DropdownToggle style={{border:'none',backgroundColor:'white'}}>
-          <MenuIcon color='primary' size='large' />
-        </DropdownToggle>
-        <DropdownMenu style={{maxWidth:'99vw',padding:'0',minWidth:'30vw'}}>
-        <MaterialTable 
+        <Fab style={{zIndex:10,position:'absolute'}} onClick={()=>setTableOpen(!tableOpen)}>
+        <MenuIcon color='primary' size='large' />
+        </Fab>
+        <div style={tableStyle}>
+       <MaterialTable 
         columns={columns}
         data={rows} 
         icons={{
@@ -160,15 +162,18 @@ return (
          NextPage:ArrowForwardIcon,
          SortArrow:ArrowUpwardIcon
        }}
+       style={{width:'323px',position:'absolute',zIndex:10,tableStyle}}
        onRowClick={showRideDetail}
        options={{
          filtering:true,
          search:false,
          toolbar:false,
          pageSizeOptions:[]
-         }}/>
-        </DropdownMenu>
-      </ButtonDropdown>
+        }}/> 
+        <Fab size='medium'style={{width:'36px',height:'55px',borderRadius:'0',position:'absolute',left:'323px',zIndex:'10',tableStyle}}>
+        <ArrowBackIosIcon onClick={()=>setTableOpen(false)}/>
+        </Fab>
+        </div>
       <PastRideMap rideDetail={rideDetail}/>
       {cardOpen && rideDetailBox}
         </main>
