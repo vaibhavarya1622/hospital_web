@@ -36,7 +36,7 @@
 
 @media screen and (min-width:1400px){
     .carddetails{
-        bottom:10px;
+        bottom:32px;
     }
     .card-box{
         font-size: 1.2rem;
@@ -45,13 +45,16 @@
     }
 }
 @media screen and (min-width:1700px){
+    .carddetails{
+        bottom:32px;
+    }
     .card-box{
         font-size: 1.5rem;
         height:5rem;
         font-weight: 600;
     }
 }
-@media screen and (max-width:1380px){
+@media screen and (max-width:1399px){
     .carddetails{
         bottom:0px;
     }
@@ -62,7 +65,7 @@
 }
 @media screen and (max-width:1060px){
     .carddetails{
-        bottom:32px;
+        bottom:7.5rem;
     }
 }
 @media screen and (max-width:500px){
@@ -71,6 +74,11 @@
     font-size: 0.7rem;
 }
 .carddetails{
-    bottom: -18px;
+    bottom: 15px;
 }
+}
+@media screen and (max-width:350px){
+    .carddetails{
+        bottom: -119px;
+    }
 }
